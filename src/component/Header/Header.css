@@ -1,0 +1,250 @@
+.header {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  left: 240px;
+  top: 0;
+  right: 0;
+  height: 70px;
+  padding: 0 59px;
+  z-index: 99;
+  min-width: 660px;
+  background-color: var(--layout-background);
+}
+
+.header .item {
+  width: 100%;
+}
+
+.header .item-left {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+
+.btn-search {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+  background-color: transparent;
+}
+
+.search-container .search-icon {
+  position: absolute;
+  cursor: pointer;
+  font-size: 20px;
+  top: 10px;
+  left: 10px;
+  color: var(--navigation-text);
+}
+
+.item .item-left + .item-right {
+  display: flex;
+}
+
+.search {
+  position: relative;
+  width: 100%;
+  max-width: 540px;
+}
+
+.search .search-container {
+  position: relative;
+  border-radius: 20px;
+  height: 40px;
+  background-color: var(--alpha-bg);
+}
+
+.search-container .input-wrapper {
+  position: absolute;
+  top: 0;
+  left: 38px;
+  right: 10px;
+  bottom: 0;
+}
+
+.search-container input {
+  margin: 0;
+  display: inline-block;
+  width: 95%;
+  font-size: 14px;
+  color: var(--search-text);
+  background-clip: padding-box;
+  border: 0;
+  position: relative;
+  top: 2px;
+  height: 34px;
+  line-height: 34px;
+  background-color: transparent;
+  user-select: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+.search-container.is-focussed {
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 1px 5px 0 rgb(0 0 0 / 20%);
+  background-color: var(--primary-bg);
+  border: 1px solid transparent;
+}
+
+.header .item-right .item-setting {
+  position: relative;
+  margin-right: 10px;
+}
+
+.header .item-right .avatar-container {
+  display: flex;
+  position: relative;
+}
+
+.avatar-container .btn-avatar {
+  padding: 0;
+  display: flex;
+  align-items: center;
+  font-weight: 500;
+  background-color: var(--alpha-bg);
+}
+
+.avatar-container .btn-avatar .avatar-wrapper {
+  height: 40px;
+  width: 40px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar-wrapper img {
+  width: 100%;
+  height: auto;
+}
+
+.list-search {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  max-width: 520px;
+  height: auto;
+  min-height: 0;
+  margin: 0;
+  list-style: none;
+  background-color: var(--primary-bg);
+  z-index: 5;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 0 4px 6px 0 rgb(32 33 36 / 28%);
+  padding: 13px 10px;
+  color: var(--text-primary);
+}
+
+.list-search-container {
+  max-height: calc(100vh - 180px);
+  overflow-y: auto;
+}
+
+.list-search-container > a {
+  text-decoration: none;
+}
+
+.search-title {
+  font-size: 14px;
+  font-weight: 700;
+  padding: 0 10px 8px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-item {
+  display: flex;
+  align-items: baseline;
+  border-radius: 4px;
+  margin: 0;
+  padding: 8px 10px;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.search-item:hover {
+  background-color: var(--alpha-bg);
+}
+
+.search-item:hover > .link-text {
+  color: var(--link-text-hover);
+}
+
+.search-item .icon-search {
+  font-size: 16px;
+  color: var(--text-secondary);
+  position: relative;
+  top: 3px;
+  margin-right: 10px;
+}
+
+.search-item .search-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--text-primary);
+}
+
+.menu-setting {
+  position: absolute;
+  width: 240px;
+  border-radius: 12px;
+  background-color: var(--primary-bg);
+  top: 50px;
+  right: 0;
+}
+
+.menu-setting .menu-list {
+  list-style: none;
+  padding: 10px 0;
+  margin: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.link-setting {
+  text-decoration: none;
+}
+
+.btn-setting {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  font-size: 14px;
+  padding: 12px 20px 12px 17px;
+  color: var(--navigation-text);
+  background-color: transparent;
+}
+
+.menu-list .menu-item:hover,
+.footer-list .footer-item:hover {
+  background-color: var(--alpha-bg);
+}
+
+.btn-setting .icon-setting {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.menu-item .item .content-setting-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.footer {
+  width: 100%;
+}
+.footer .footer-list {
+  font-size: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 10px 0 0 0;
+}
+
+.footer-list .footer-item .btn-setting {
+  color: var(--text-secondary);
+}

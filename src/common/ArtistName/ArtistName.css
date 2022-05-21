@@ -1,0 +1,9 @@
+.link-artists {
+  text-decoration: none;
+  color: var(--text-secondary);
+}
+
+.link-artists:hover {
+  color: var(--link-text-hover);
+  text-decoration: underline;
+}

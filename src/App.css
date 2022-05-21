@@ -1,0 +1,16 @@
+.layout-container {
+  display: flex;
+  width: 100%;
+  min-width: 768px;
+  height: 100vh;
+  background-color: var(--layout-background);
+}
+
+.main-page {
+  display: block;
+  flex-grow: 1;
+  position: relative;
+  width: calc(100% - 570px);
+  min-height: 100%;
+  z-index: 1;
+}

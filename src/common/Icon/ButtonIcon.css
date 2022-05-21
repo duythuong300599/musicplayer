@@ -1,0 +1,14 @@
+.btn-icon {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--alpha-bg);
+  border-radius: 999px;
+}
+
+.btn-icon .icon {
+  color: var(--setting-icon-text);
+  font-size: 20px;
+}

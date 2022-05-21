@@ -1,0 +1,128 @@
+:root {
+  --text-primary: #fff;
+  --text-secondary: hsla(0, 0%, 100%, 0.5);
+  --link-text-hover: #c662ef;
+  --primary-bg: #432275;
+  --border-secondary: hsla(0, 0%, 100%, 0.05);
+  --song-item-action: hsla(0, 0%, 100%, 0.5);
+  --navigation-text: #dadada;
+  --search-text: #eee;
+  --layout-background: #170f23;
+  --scroll-thumb-bg: hsla(0, 0%, 100%, 0.3);
+  --sidebar-bg: hsla(0, 0%, 100%, 0.05);
+  --alpha-bg: hsla(0, 0%, 100%, 0.1);
+  --setting-icon-text: #d8d8d8;
+
+  --img-logo: url(https://zmp3-static.zmdcdn.me/skins/zmp3-v6.1/images/backgrounds/logo-dark.svg);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  line-height: 1.5;
+  font-size: 14px;
+  color: var(--text-primary);
+  background-color: var(--layout-background);
+  font-weight: 400;
+  font-family: sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+  overflow: hidden;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.btn {
+  font-size: 14px;
+  border-radius: 999px;
+  line-height: normal;
+  border: 0;
+  display: inline-block;
+  font-weight: 400;
+  text-transform: none;
+  text-align: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.mar-t-10 {
+  margin-top: 10px !important;
+}
+
+.mar-t-15 {
+  margin-top: 15px !important;
+}
+
+.mar-r-5 {
+  margin-right: 5px !important;
+}
+
+.mar-r-15 {
+  margin-right: 15px !important;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.item-left {
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.item-right {
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.show {
+  display: flex !important;
+}
+
+.hide {
+  display: none !important;
+}
+
+.bor-b-1 {
+  border-bottom: 1px solid var(--border-secondary) !important;
+}
+
+.media {
+  align-items: center;
+  display: flex;
+  height: 40px;
+  text-align: left;
+  padding: 10px;
+  border-radius: 5px;
+  user-select: none;
+}
+
+.media-left,
+.media-right {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.media-left {
+  margin-right: 10px;
+}
+
+.media-right {
+  margin-left: 10px;
+}
+
+.media-content {
+  flex-basis: auto;
+  flex-grow: 1;
+  flex-shrink: 1;
+  text-align: left;
+  align-self: center;
+  width: 0;
+}
