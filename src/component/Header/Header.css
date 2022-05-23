@@ -100,6 +100,15 @@ input:focus {
   position: relative;
 }
 
+.item-right .item-setting .btn-icon {
+  background-color: var(--alpha-bg);
+  transform: scale(1.1);
+}
+
+.item-setting .btn-icon .icon {
+  transform: scale(1.2);
+}
+
 .avatar-container .btn-avatar {
   padding: 0;
   display: flex;

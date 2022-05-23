@@ -18,7 +18,7 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import ButtonIcon from "../../common/Icon/ButtonIcon";
+import ButtonIcon from "../../common/ButtonIcon/ButtonIcon";
 import "./Header.css";
 
 function Header() {

@@ -108,8 +108,22 @@
   border-radius: 4px;
 }
 
+.chart-song-item.active,
 .chart-song-item:hover {
   background-color: var(--alpha-bg);
+}
+
+.chart-song-item:hover .opacity,
+.chart-song-item:hover .btn-play {
+  visibility: visible;
+}
+
+.chart-song-item:hover .time-duration {
+  display: none;
+}
+
+.chart-song-item:hover .otp-hover {
+  display: block;
 }
 
 .chart-song-item .list-item {
@@ -174,11 +188,23 @@
   margin-right: 10px;
   flex-shrink: 0;
   cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.opacity {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--dark-alpha-50);
+  visibility: hidden;
 }
 
 .media-left .song-thumb .img-thumb {
-  width: 40px;
-  height: 40px;
+  width: 100%;
+  height: 100%;
 }
 
 .media-left .card-info {
@@ -196,6 +222,10 @@
 
 .title-wrapper .title {
   line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
 }
 
 .media .media-left .subtitle {
@@ -261,13 +291,15 @@
 
 .week-chart-column {
   display: flex;
+  flex-wrap: wrap;
   position: relative;
-  margin: 0 -15px 30px -15px;
+  margin: 0 -15px;
 }
 
-.week-chart-column .column-item {
-  width: calc(100% / 3);
+.container .week-chart-column .column-item {
+  width: calc(100% / 3 - 30px);
   padding: 0 15px;
+  margin-bottom: 30px;
 }
 
 .week-chart .week-chart-box {
@@ -297,4 +329,26 @@
 .box-header .btn-chart-play {
   width: 30px;
   height: 30px;
+}
+
+.box-list {
+  height: 306px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.box-list .media {
+  justify-content: space-between;
+}
+
+.box-list .media .media-left {
+  flex-grow: 1;
+}
+
+.box-list .chart-song-item .number {
+  width: 30px;
+}
+
+.otp-hover {
+  display: none;
 }
