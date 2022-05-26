@@ -22,6 +22,7 @@ import {
   addAudioElement,
   addSelectIndex,
   addSelectSong,
+  addSelectSrc,
   setStatePlay,
 } from "../../actions/selectSong";
 import songApi from "../../Api/songApi";
@@ -33,15 +34,15 @@ import formatTimes from "../../common/fomatTimes";
 function NowPlaying() {
   const audioRef = useRef();
   const audio = audioRef.current;
-  const [srcSong, setSrcSong] = useState();
   const [volume, setVolume] = useState(100);
   const [liked, setLiked] = useState(false);
   const [currentTimeSong, setCurrentTimeSong] = useState(0);
 
-  const listSongs = useSelector((state) => state.selectSong.listSongs);
+  const chartSongs = useSelector((state) => state.selectSong.listSongs);
+  const listSongs = chartSongs?.RTChart ? chartSongs.RTChart.items : [];
   const currentIndex = useSelector((state) => state.selectSong.index);
-  const currentSong = useSelector((state) => state.selectSong.song);
   const currentStatePlay = useSelector((state) => state.selectSong.statePlay);
+  const srcSong = useSelector((state) => state.selectSong.src);
   const actionStatePlayTrue = setStatePlay(true);
   const actionStatePlayFalse = setStatePlay(false);
 
@@ -49,22 +50,21 @@ function NowPlaying() {
 
   //API cu
   useEffect(() => {
-    console.log(`song ${currentIndex}:`, currentSong);
     const fetchChartSong = async () => {
       try {
         const responseSong = await songApi.getSong(
           listSongs[currentIndex].encodeId
         );
-        responseSong.data
-          ? setSrcSong(responseSong.data[128])
-          : console.log(responseSong.msg);
+        dispatch(addSelectSrc(responseSong.data[128]));
         const addAudio = addAudioElement(audio);
         dispatch(addAudio);
       } catch (error) {
         console.log(error);
       }
     };
-    fetchChartSong();
+    listSongs[currentIndex]?.encodeId
+      ? fetchChartSong()
+      : console.log("don't call song");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listSongs[currentIndex]]);
 

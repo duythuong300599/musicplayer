@@ -1,0 +1,164 @@
+.chart-song-item {
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.chart-song-item.active,
+.chart-song-item:hover {
+  background-color: var(--alpha-bg);
+}
+
+.chart-song-item:hover .opacity,
+.chart-song-item:hover .btn-play {
+  visibility: visible;
+}
+
+.chart-song-item:hover .time-duration {
+  display: none;
+}
+
+.chart-song-item:hover .otp-hover {
+  display: block;
+}
+
+.chart-song-item .list-item {
+  border-radius: 4px;
+}
+
+.chart-song-item .list-item .media {
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.chart-song-item .number {
+  width: 60px;
+  min-width: 38px;
+  -webkit-text-stroke: 1.5px var(--text-primary);
+  opacity: 0.7;
+  font-size: 32px;
+  font-weight: 900;
+  line-height: 1;
+  text-align: center;
+  color: rgba(74, 144, 226, 0);
+  font-family: "Roboto", sans-serif;
+  white-space: nowrap;
+}
+
+.chart-song-item .number.is-top-1 {
+  -webkit-text-stroke: 1px #4a90e2;
+  opacity: 1;
+}
+
+.chart-song-item .number.is-top-2 {
+  -webkit-text-stroke: 1px #50e3c2;
+  opacity: 1;
+}
+
+.chart-song-item .number.is-top-3 {
+  -webkit-text-stroke: 1px #e35050;
+  opacity: 1;
+}
+.box-list .chart-song-item .number {
+  width: 30px;
+}
+
+.list-item .album-info .link-album {
+  color: var(--song-item-action);
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 100%;
+  text-decoration: none;
+}
+
+.list-item .album-info .link-album:hover {
+  text-decoration: underline;
+  color: var(--link-text-hover);
+}
+
+.list-item .media-left {
+  display: flex;
+  width: 50%;
+  height: 40px;
+}
+
+.media .media-left .song-id {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  margin-right: 10px;
+  color: var(--song-item-action);
+  font-weight: 700;
+}
+
+.media-left .song-thumb {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  margin-right: 10px;
+  flex-shrink: 0;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+}
+
+.media-left .song-thumb .img-thumb {
+  width: 100%;
+  height: 100%;
+}
+
+.media-left .card-info {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.media .media-left .title-wrapper {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.media .media-left .subtitle {
+  display: block;
+  font-size: 12px;
+  margin: 3px 0 0 0;
+  line-height: 1.33;
+  color: var(--text-secondary);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+
+.media .media-right .duration {
+  font-size: 12px;
+  width: 46px;
+  color: var(--song-item-action);
+}
+.box-list .media {
+  justify-content: space-between;
+}
+
+.box-list .media .media-left {
+  flex-grow: 1;
+}
+.opacity {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: var(--dark-alpha-50);
+  visibility: hidden;
+}
+.title-wrapper .title {
+  line-height: 1.3;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}

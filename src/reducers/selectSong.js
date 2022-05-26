@@ -4,10 +4,17 @@ const initialState = {
   song: {},
   listSongs: [],
   statePlay: false,
+  src: "",
 };
 
 const selectSongReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "ADD_SRC": {
+      return {
+        ...state,
+        src: action.payload,
+      };
+    }
     case "ADD_AUDIO": {
       return {
         ...state,
