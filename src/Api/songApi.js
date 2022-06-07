@@ -13,6 +13,10 @@ const songApi = {
     const url = `/song?id=${id}`;
     return axiosClient.get(url);
   },
+  getHomePage: (id) => {
+    const url = `/home?page=${id}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default songApi;

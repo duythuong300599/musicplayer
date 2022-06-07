@@ -9,6 +9,7 @@ import { addListSongs } from "../../actions/selectSong";
 import { setIsLoading } from "../../actions/isLoading";
 
 import RenderListSongs from "./renderListSongs/renderListSongs";
+import RenderListSkeleton from "./renderListSongs/renderListSkeleton";
 
 function ZingChart() {
   const [showList, setShowList] = useState(false);
@@ -58,14 +59,18 @@ function ZingChart() {
             <div
               className={`chart-list-container ${showList ? "show-all" : ""}`}
             >
-              {(isLoading ? ListSongs : []).map((item, index) => (
-                <RenderListSongs
-                  key={index}
-                  index={index}
-                  fullList={true}
-                  item={item}
-                ></RenderListSongs>
-              ))}
+              {isLoading ? (
+                ListSongs.map((item, index) => (
+                  <RenderListSongs
+                    key={index}
+                    index={index}
+                    fullList={true}
+                    item={item}
+                  ></RenderListSongs>
+                ))
+              ) : (
+                <RenderListSkeleton items={10} />
+              )}
             </div>
             <div
               className={`show-list ${showList ? "hide" : ""}`}
@@ -98,16 +103,18 @@ function ZingChart() {
                     </button>
                   </div>
                   <div className="box-list">
-                    {chartWeek
-                      ? chartWeek.vn.items.map((item, index) => (
-                          <RenderListSongs
-                            key={index}
-                            index={index}
-                            item={item}
-                            fullList={false}
-                          ></RenderListSongs>
-                        ))
-                      : null}
+                    {chartWeek ? (
+                      chartWeek.vn.items.map((item, index) => (
+                        <RenderListSongs
+                          key={index}
+                          index={index}
+                          item={item}
+                          fullList={false}
+                        ></RenderListSongs>
+                      ))
+                    ) : (
+                      <RenderListSkeleton items={5} />
+                    )}
                   </div>
                   <div className="show-list">
                     <NavLink
@@ -136,16 +143,18 @@ function ZingChart() {
                     </button>
                   </div>
                   <div className="box-list mar-b-15">
-                    {chartWeek
-                      ? chartWeek.us.items.map((item, index) => (
-                          <RenderListSongs
-                            key={index}
-                            index={index}
-                            item={item}
-                            fullList={false}
-                          ></RenderListSongs>
-                        ))
-                      : null}
+                    {chartWeek ? (
+                      chartWeek.us.items.map((item, index) => (
+                        <RenderListSongs
+                          key={index}
+                          index={index}
+                          item={item}
+                          fullList={false}
+                        ></RenderListSongs>
+                      ))
+                    ) : (
+                      <RenderListSkeleton items={5} />
+                    )}
                   </div>
                   <div className="show-list">
                     <NavLink
@@ -174,16 +183,18 @@ function ZingChart() {
                     </button>
                   </div>
                   <div className="box-list">
-                    {chartWeek
-                      ? chartWeek.korea.items.map((item, index) => (
-                          <RenderListSongs
-                            key={index}
-                            index={index}
-                            item={item}
-                            fullList={false}
-                          ></RenderListSongs>
-                        ))
-                      : null}
+                    {chartWeek ? (
+                      chartWeek.korea.items.map((item, index) => (
+                        <RenderListSongs
+                          key={index}
+                          index={index}
+                          item={item}
+                          fullList={false}
+                        ></RenderListSongs>
+                      ))
+                    ) : (
+                      <RenderListSkeleton items={5} />
+                    )}
                   </div>
                   <div className="show-list">
                     <NavLink

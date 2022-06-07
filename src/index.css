@@ -130,3 +130,10 @@ code {
   align-self: center;
   width: 0;
 }
+
+.container {
+  flex-grow: 1;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}

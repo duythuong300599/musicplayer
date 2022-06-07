@@ -201,6 +201,7 @@ input:focus {
 
 .menu-setting {
   position: absolute;
+  flex-direction: column;
   width: 240px;
   border-radius: 12px;
   background-color: var(--primary-bg);

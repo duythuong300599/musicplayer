@@ -43,13 +43,6 @@
   margin-top: 70px;
 }
 
-.container {
-  flex-grow: 1;
-  margin: 0 auto;
-  position: relative;
-  width: 100%;
-}
-
 .chart-wrapper {
   position: relative;
   padding-bottom: 30px;
