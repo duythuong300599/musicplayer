@@ -4,7 +4,8 @@ import queryString from "query-string";
 // Set up default config for http requests here
 // Please have a look at here `https://github.com/axios/axios#request- config` for the full list of configs
 const axiosClient = axios.create({
-  baseURL: "https://music-player-pink.vercel.app/api",
+  // baseURL: "https://music-player-gray.vercel.app/api",
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     "content-type": "application/json",
   },
