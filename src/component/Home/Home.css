@@ -36,3 +36,26 @@
 .slick-list .slick-track .slick-slide > div {
   padding: 15px;
 }
+
+.slick-arrow {
+  display: none;
+  z-index: 1;
+}
+
+.slick-next {
+  right: 56px;
+}
+
+.slick-prev {
+  left: 28px;
+}
+
+.slick-prev::before,
+.slick-next::before {
+  font-size: 50px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.slick-slider:hover > .slick-arrow {
+  display: block;
+}

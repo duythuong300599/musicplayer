@@ -5,7 +5,7 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Home.css";
 import RenderListSkeleton from "../ZingChart/renderListSongs/renderListSkeleton";
 import songApi from "../../Api/songApi";
-import Skeleton from "react-loading-skeleton";
+import { NavLink } from "react-router-dom";
 
 function Home() {
   const [state, setstate] = useState([]);
@@ -24,6 +24,29 @@ function Home() {
     fetchHomePage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  function SampleNextArrow(props) {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        // style={{ background: "red" }}
+        onClick={onClick}
+      />
+    );
+  }
+
+  function SamplePrevArrow(props) {
+    const { className, onClick } = props;
+    return (
+      <div
+        className={className}
+        // style={{ background: "green" }}
+        onClick={onClick}
+      />
+    );
+  }
+
   const settings = {
     infinite: true,
     slidesToShow: 3,
@@ -31,6 +54,8 @@ function Home() {
     autoplay: true,
     autoplaySpeed: 2000,
     pauseOnHover: true,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
   };
   return (
     <>
@@ -41,17 +66,17 @@ function Home() {
               <div className="slider-container">
                 <Slider {...settings}>
                   {state.map((item, index) => (
-                    <div className="slider-item" key={index}>
+                    <NavLink to={item.link} className="slider-item" key={index}>
                       <img className="slider-img" src={item.banner} alt="" />
-                    </div>
+                    </NavLink>
                   ))}
                 </Slider>
               </div>
             </div>
+            <RenderListSkeleton items={5} />
           </div>
         </main>
       </div>
-      <RenderListSkeleton items={5} />
     </>
   );
 }
