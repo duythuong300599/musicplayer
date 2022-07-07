@@ -5,14 +5,27 @@ import Header from "./component/Header/Header";
 import Router from "./router";
 import NowPlaying from "./component/NowPlaying/NowPlaying";
 import { SkeletonTheme } from "react-loading-skeleton";
+import { useSelector } from "react-redux";
 
 function App() {
+  const isPlaying = useSelector((state) => state.isLoading.playing);
+
+  const backgroundColor = {
+    primary: "#170f23",
+    green: "green",
+  };
   return (
-    <SkeletonTheme baseColor="#313131" highlightColor="#525252">
-      <div className="layout-container">
+    <SkeletonTheme
+      baseColor="rgba(255, 255, 255, 0.05)"
+      highlightColor="#525252"
+    >
+      <div
+        className="layout-container"
+        style={{ backgroundColor: `${backgroundColor.primary}` }}
+      >
         <Navbar />
         <Header />
-        <div className="main-page">
+        <div className={`${isPlaying ? "song-playing" : ""} main-page`}>
           <Router />
         </div>
         <NowPlaying />

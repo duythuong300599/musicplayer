@@ -1,0 +1,18 @@
+.skeleton-container {
+  display: flex;
+}
+
+.skeleton-container .skeleton-wrapper {
+  display: flex;
+  width: calc(100% / 3);
+}
+
+.skeleton-container .skeleton-wrapper .skeleton-item {
+  padding: 0 15px;
+  width: 100%;
+  height: 174px;
+}
+
+.skeleton-item .react-loading-skeleton {
+  height: 100%;
+}

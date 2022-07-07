@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 import songAPI from "../../Api/songApi";
 import "./ZingChart.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addListSongs } from "../../actions/selectSong";
+import { addQueueListSongs, addZingChart } from "../../actions/selectSong";
 import { setIsLoading } from "../../actions/isLoading";
 
 import RenderListSongs from "./renderListSongs/renderListSongs";
@@ -13,10 +13,9 @@ import RenderListSkeleton from "./renderListSongs/renderListSkeleton";
 
 function ZingChart() {
   const [showList, setShowList] = useState(false);
-  console.log("render");
   const dispatch = useDispatch();
 
-  const chartSongs = useSelector((state) => state.selectSong.listSongs);
+  const chartSongs = useSelector((state) => state.selectSong.zingChart);
   const isLoading = useSelector((state) => state.isLoading.loading);
   const ListSongs = chartSongs?.RTChart ? chartSongs.RTChart.items : [];
   const chartWeek = chartSongs?.weekChart ? chartSongs.weekChart : null;
@@ -26,17 +25,17 @@ function ZingChart() {
       try {
         const responseChartSong = await songAPI.getChartHome();
         const dataChartSongs = responseChartSong.data;
-        dispatch(addListSongs(dataChartSongs));
+        dispatch(addZingChart(dataChartSongs));
+        dispatch(addQueueListSongs(dataChartSongs.RTChart.items));
         dispatch(setIsLoading(true));
         console.log("func called");
       } catch (error) {
         console.log(error);
       }
     };
-    isLoading ? console.log("func don't called") : fetchChartSong();
+    fetchChartSong();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  console.log("is Loading...", isLoading);
 
   //handle show top 100
   const handleShowTop100 = () => {

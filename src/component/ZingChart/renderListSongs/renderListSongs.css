@@ -8,6 +8,11 @@
   background-color: var(--alpha-bg);
 }
 
+.chart-song-item.active .btn-play,
+.chart-song-item.active .opacity {
+  visibility: visible;
+}
+
 .chart-song-item:hover .opacity,
 .chart-song-item:hover .btn-play {
   visibility: visible;

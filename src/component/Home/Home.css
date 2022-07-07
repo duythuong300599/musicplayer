@@ -31,6 +31,7 @@
 
 .slider-img {
   width: 100%;
+  border-radius: 8px;
 }
 
 .slick-list .slick-track .slick-slide > div {

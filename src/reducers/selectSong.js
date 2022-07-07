@@ -3,6 +3,8 @@ const initialState = {
   index: null,
   song: {},
   listSongs: [],
+  queueListSongs: [],
+  zingChart: [],
   statePlay: false,
   src: "",
 };
@@ -31,6 +33,18 @@ const selectSongReducer = (state = initialState, action) => {
       return {
         ...state,
         listSongs: action.payload,
+      };
+    }
+    case "ADD_QUEUE_LIST_SONGS": {
+      return {
+        ...state,
+        queueListSongs: action.payload,
+      };
+    }
+    case "ADD_ZING_CHART": {
+      return {
+        ...state,
+        zingChart: action.payload,
       };
     }
     case "SELECT_INDEX": {

@@ -7,10 +7,12 @@ function ArtistName(props) {
   return (
     <>
       {dataArtists.map((item, index) => (
-        <NavLink className="link-artists" key={index} to={item.link}>
-          {item.name}
-          <span> </span>
-        </NavLink>
+        <span key={index}>
+          {index > 0 ? <span>, </span> : ""}
+          <NavLink className="link-artists" to={item.link}>
+            {item.name}
+          </NavLink>
+        </span>
       ))}
     </>
   );

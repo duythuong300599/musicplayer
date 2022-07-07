@@ -33,6 +33,20 @@ export const addListSongs = (payload) => {
   };
 };
 
+export const addQueueListSongs = (payload) => {
+  return {
+    type: "ADD_QUEUE_LIST_SONGS",
+    payload: payload,
+  };
+};
+
+export const addZingChart = (payload) => {
+  return {
+    type: "ADD_ZING_CHART",
+    payload: payload,
+  };
+};
+
 export const setStatePlay = (payload) => {
   return {
     type: "SET_STATE_PLAY",

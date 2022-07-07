@@ -1,0 +1,30 @@
+.header-album {
+  display: flex;
+}
+
+.album-img {
+  min-width: 320px;
+  height: 320px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.album-content {
+  margin-left: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.album-title {
+  margin: 25px 0;
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.album-update,
+.album-artists,
+.album-description {
+  color: var(--text-secondary);
+  margin-top: 10px;
+}

@@ -1,27 +1,33 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./Home.css";
-import RenderListSkeleton from "../ZingChart/renderListSongs/renderListSkeleton";
 import songApi from "../../Api/songApi";
 import { NavLink } from "react-router-dom";
+import SkeletonSlider from "../../common/skeleton/SkeletonSlider";
+import PlayListSlider from "./playListSlider/PlayListSlider";
+import { useDispatch, useSelector } from "react-redux";
+import { loadDataHome, setLoadHome } from "../../actions/loadDataHome";
 
 function Home() {
-  const [state, setstate] = useState([]);
+  const dispatch = useDispatch();
+
+  const dataHome = useSelector((state) => state.loadHome.dataHome);
+  const loadingHome = useSelector((state) => state.loadHome.isLoadingHome);
   //API
   useEffect(() => {
     const fetchHomePage = async () => {
       try {
-        const responseHomePage = await songApi.getHomePage(1);
-        const dataHomePage = responseHomePage.data.items[0].items;
-        console.log(dataHomePage);
-        setstate(dataHomePage);
+        const responseHome = await songApi.getHome();
+        dispatch(loadDataHome(responseHome.data.items));
+        // dispatch(loadDataHome(responseHomePage2.data.items));
+        dispatch(setLoadHome(true));
       } catch (error) {
         console.log(error);
       }
     };
-    fetchHomePage();
+    loadingHome ? console.log("not call api") : fetchHomePage();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -64,16 +70,36 @@ function Home() {
           <div className="container">
             <div className="container">
               <div className="slider-container">
-                <Slider {...settings}>
-                  {state.map((item, index) => (
-                    <NavLink to={item.link} className="slider-item" key={index}>
-                      <img className="slider-img" src={item.banner} alt="" />
-                    </NavLink>
-                  ))}
-                </Slider>
+                {loadingHome ? (
+                  <Slider {...settings}>
+                    {dataHome[0].items.map((item, index) => (
+                      <NavLink to="" className="slider-item" key={index}>
+                        <img className="slider-img" src={item.banner} alt="" />
+                      </NavLink>
+                    ))}
+                  </Slider>
+                ) : (
+                  <SkeletonSlider />
+                )}
               </div>
             </div>
-            <RenderListSkeleton items={5} />
+            <PlayListSlider
+              items={loadingHome ? dataHome[3] : undefined}
+              slide={5}
+            />
+            <PlayListSlider
+              items={loadingHome ? dataHome[4] : undefined}
+              slide={5}
+            />
+            <PlayListSlider
+              items={loadingHome ? dataHome[6] : undefined}
+              slide={5}
+            />
+
+            <PlayListSlider
+              items={loadingHome ? dataHome[10] : undefined}
+              slide={5}
+            />
           </div>
         </main>
       </div>

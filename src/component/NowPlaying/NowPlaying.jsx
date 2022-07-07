@@ -1,9 +1,7 @@
 import {
   faBackwardStep,
   faEllipsis,
-  faFilm,
   faForwardStep,
-  faHeart,
   faListUl,
   faMicrophone,
   faPause,
@@ -14,7 +12,6 @@ import {
   faVolumeUp,
   faWindowRestore,
 } from "@fortawesome/free-solid-svg-icons";
-import { faHeart as like } from "@fortawesome/free-regular-svg-icons";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
@@ -30,19 +27,20 @@ import ArtistName from "../../common/ArtistName/ArtistName";
 import ButtonIcon from "../../common/ButtonIcon/ButtonIcon";
 import "./NowPlaying.css";
 import formatTimes from "../../common/fomatTimes";
+import { setIsPlaying } from "../../actions/isLoading";
+import NPLyrics from "./np_lyrics/NPLyrics";
 
 function NowPlaying() {
   const audioRef = useRef();
   const audio = audioRef.current;
   const [volume, setVolume] = useState(100);
-  const [liked, setLiked] = useState(false);
   const [currentTimeSong, setCurrentTimeSong] = useState(0);
 
-  const chartSongs = useSelector((state) => state.selectSong.listSongs);
-  const listSongs = chartSongs?.RTChart ? chartSongs.RTChart.items : [];
+  const listSongs = useSelector((state) => state.selectSong.listSongs);
   const currentIndex = useSelector((state) => state.selectSong.index);
   const currentStatePlay = useSelector((state) => state.selectSong.statePlay);
   const srcSong = useSelector((state) => state.selectSong.src);
+  const isPlaying = useSelector((state) => state.isLoading.playing);
   const actionStatePlayTrue = setStatePlay(true);
   const actionStatePlayFalse = setStatePlay(false);
 
@@ -56,8 +54,8 @@ function NowPlaying() {
           listSongs[currentIndex].encodeId
         );
         dispatch(addSelectSrc(responseSong.data[128]));
-        const addAudio = addAudioElement(audio);
-        dispatch(addAudio);
+        dispatch(addAudioElement(audio));
+        dispatch(setIsPlaying(true));
       } catch (error) {
         console.log(error);
       }
@@ -97,11 +95,6 @@ function NowPlaying() {
     audio.src = "";
   };
 
-  //handle liked
-  const handleLiked = () => {
-    setLiked((liked) => !liked);
-    console.log(typeof audio);
-  };
   //handle VolumeChanged
   const handleVolumeChanged = (e) => {
     let volumeCurrent = e.target.value / 100;
@@ -143,7 +136,7 @@ function NowPlaying() {
   return (
     <div
       className={`now-playing-wrapper ${
-        listSongs[currentIndex] ? "has-song-playing" : "hide"
+        isPlaying ? "has-song-playing" : "hide"
       }`}
     >
       <div className="player-control">
@@ -192,10 +185,6 @@ function NowPlaying() {
                 </div>
                 <div className="media-left">
                   <div className="item">
-                    <div onClick={handleLiked}>
-                      <ButtonIcon icon={liked ? faHeart : like} />
-                    </div>
-
                     <ButtonIcon icon={faEllipsis} />
                   </div>
                 </div>
@@ -248,9 +237,6 @@ function NowPlaying() {
           </div>
           <div className="item-right player-control-right">
             <div className="item">
-              <ButtonIcon icon={faFilm} />
-            </div>
-            <div className="item">
               <ButtonIcon icon={faMicrophone} />
             </div>
             <div className="item">
@@ -280,6 +266,9 @@ function NowPlaying() {
             </div>
           </div>
         </div>
+        <>
+          <NPLyrics />
+        </>
       </div>
       <audio
         onPlay={timePlay}

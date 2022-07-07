@@ -6,12 +6,10 @@ import {
   faCompactDisc,
   faFilm,
   faMusic,
-  faPlus,
   faRadio,
   faRectangleList,
   faSquareRss,
   faStar,
-  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import "./Navbar.css";
 
@@ -32,12 +30,12 @@ function Navbar() {
         </nav>
         <nav className="navbar navbar-main">
           <ul className="navbar-menu">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <NavLink className="nav-link" to="/zzz ">
                 <FontAwesomeIcon className="nav-icon" icon={faUser} />
                 <span>Cá Nhân</span>
               </NavLink>
-            </li>
+            </li> */}
             <li className="nav-item">
               <NavLink className="nav-link" to="/">
                 <FontAwesomeIcon className="nav-icon" icon={faCompactDisc} />
@@ -50,14 +48,15 @@ function Navbar() {
                 <span>#zingchart</span>
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/radio">
+
+            <li className="nav-item ">
+              <NavLink className="nav-link cursor-disabled" to="">
                 <FontAwesomeIcon className="nav-icon" icon={faRadio} />
                 <span>Radio</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/the-loai-nghe-si">
+              <NavLink className="nav-link cursor-disabled" to="">
                 <FontAwesomeIcon className="nav-icon" icon={faSquareRss} />
                 <span>Theo dõi</span>
               </NavLink>
@@ -68,13 +67,13 @@ function Navbar() {
         <div className="navbar navbar-main mar-t-10" style={{ height: "100%" }}>
           <ul className="navbar-menu">
             <li className="nav-item">
-              <NavLink className="nav-link" to="/moi-phat-hanh">
+              <NavLink className="nav-link cursor-disabled" to="/">
                 <FontAwesomeIcon className="nav-icon" icon={faMusic} />
                 <span>Nhạc Mới</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/hub">
+              <NavLink className="nav-link cursor-disabled" to="/">
                 <FontAwesomeIcon className="nav-icon" icon={faRectangleList} />
                 <span>Thể Loại</span>
               </NavLink>
@@ -86,7 +85,7 @@ function Navbar() {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/the-loai-video">
+              <NavLink className="nav-link cursor-disabled" to="/">
                 <FontAwesomeIcon className="nav-icon" icon={faFilm} />
                 <span>MV</span>
               </NavLink>
@@ -96,7 +95,7 @@ function Navbar() {
             <div className="text">
               Đăng nhập để khám phá playlist dành riêng cho bạn
             </div>
-            <button className="btn btn-login">
+            <button className="btn btn-login cursor-disabled">
               <span>ĐĂNG NHẬP</span>
             </button>
           </div>
@@ -104,17 +103,17 @@ function Navbar() {
             <div className="text">
               Nghe nhạc không quảng cáo cùng kho nhạc VIP
             </div>
-            <button className="btn btn-update-vip">
+            <button className="btn btn-update-vip cursor-disabled">
               <span>Nâng cấp VIP</span>
             </button>
           </div>
         </div>
-        <div className="add-play-list">
+        {/* <div className="add-play-list">
           <button className="btn btn-add-play-list">
             <FontAwesomeIcon className="add-play-list-icon" icon={faPlus} />
             <span>Tạo Play List Mới</span>
           </button>
-        </div>
+        </div> */}
       </div>
     </aside>
   );

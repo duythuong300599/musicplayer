@@ -1,14 +1,10 @@
-import {
-  faEllipsis,
-  faHeart,
-  faMicrophone,
-} from "@fortawesome/free-solid-svg-icons";
-import { faHeart as like } from "@fortawesome/free-regular-svg-icons";
+import { faEllipsis, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import {
+  addListSongs,
   addSelectIndex,
   addSelectSong,
   setStatePlay,
@@ -24,21 +20,19 @@ function RenderListSongs(props) {
   const prevSong = useSelector((state) => state.selectSong.song);
   const currentStatePlay = useSelector((state) => state.selectSong.statePlay);
   const audioElement = useSelector((state) => state.selectSong.audio);
+  const queueListSongs = useSelector(
+    (state) => state.selectSong.queueListSongs
+  );
   const dispatch = useDispatch();
 
-  const [liked, setLiked] = useState(false);
   const song = props.item;
   const index = props.index;
-  //handle liked
-  const handleLiked = () => {
-    setLiked((liked) => !liked);
-  };
   // handle play song
   const handlePlaySong = () => {
-    const action = addSelectSong(song);
-    const actions = addSelectIndex(index);
-    dispatch(action);
-    dispatch(actions);
+    dispatch(addSelectSong(song));
+    dispatch(addSelectIndex(index));
+    dispatch(addListSongs(queueListSongs));
+    // console.log("index: ", index);
     if (currentStatePlay && audioElement) {
       audioElement.pause();
       dispatch(setStatePlay(false));
@@ -86,7 +80,9 @@ function RenderListSongs(props) {
                 <span className="title">{song.title}</span>
               </div>
               <h3 className="subtitle">
-                <ArtistName artists={song.artists}></ArtistName>
+                <ArtistName
+                  artists={song.artists ? song.artists : []}
+                ></ArtistName>
               </h3>
             </div>
           </div>
@@ -108,11 +104,6 @@ function RenderListSongs(props) {
             <div className="otp-hover">
               <div className="item">
                 <ButtonIcon icon={faMicrophone} />
-                {props.fullList ? (
-                  <div onClick={handleLiked}>
-                    <ButtonIcon icon={liked ? faHeart : like} />
-                  </div>
-                ) : null}
                 <ButtonIcon icon={faEllipsis} />
               </div>
             </div>
