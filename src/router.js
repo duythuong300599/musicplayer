@@ -8,7 +8,8 @@ import ZingChart from "./component/ZingChart/ZingChart";
 function Router() {
   const dataAlbum = JSON.parse(localStorage.getItem("Album"));
 
-  const link = useSelector((state) => state.selectAlbum.link) || dataAlbum.link;
+  const link =
+    useSelector((state) => state.selectAlbum?.link) || dataAlbum?.link;
   return useRoutes([
     {
       path: "/",

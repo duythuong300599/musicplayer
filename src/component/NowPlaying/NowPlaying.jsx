@@ -60,9 +60,7 @@ function NowPlaying() {
         console.log(error);
       }
     };
-    listSongs[currentIndex]?.encodeId
-      ? fetchChartSong()
-      : console.log("don't call song");
+    fetchChartSong();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listSongs[currentIndex]]);
 
@@ -266,9 +264,9 @@ function NowPlaying() {
             </div>
           </div>
         </div>
-        <>
+        {/* <>
           <NPLyrics />
-        </>
+        </> */}
       </div>
       <audio
         onPlay={timePlay}
