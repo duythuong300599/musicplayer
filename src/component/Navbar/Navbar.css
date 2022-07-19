@@ -12,6 +12,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  justify-content: center;
 }
 
 .sidebar .navbar {
@@ -217,5 +218,41 @@
   .logo {
     width: 40px;
     background-image: var(--img-logo);
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .sidebar {
+    position: fixed;
+    height: 70px;
+    width: 100%;
+    padding: 0;
+    bottom: 0;
+  }
+
+  .nav-mobile-hide {
+    display: none;
+  }
+
+  .navbar-main {
+    margin: 0;
+  }
+
+  .navbar-main .navbar-menu {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav-item {
+    width: 25%;
+  }
+
+  .navbar-main .navbar-menu .nav-item .nav-link {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .nav-item span {
+    display: block;
   }
 }

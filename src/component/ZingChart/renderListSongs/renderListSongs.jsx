@@ -3,7 +3,7 @@ import { faEllipsis, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { addSelectSong, addSelectSrc } from "../../../actions/np_localStore";
+import { addSelectSong } from "../../../actions/np_localStore";
 import {
   addListSongs,
   addSelectIndex,
@@ -32,7 +32,6 @@ function RenderListSongs(props) {
     dispatch(addSelectSong(song));
     dispatch(addSelectIndex(index));
     dispatch(addListSongs(queueListSongs));
-    dispatch(addSelectSrc(""));
     // console.log("index: ", index);
     if (currentStatePlay && audioElement) {
       audioElement.pause();
@@ -49,7 +48,7 @@ function RenderListSongs(props) {
       className={`chart-song-item ${
         song.encodeId === prevSong.encodeId ? "active" : ""
       }`}
-      onDoubleClick={handlePlaySong}
+      onClick={handlePlaySong}
     >
       <div className="list-item bor-b-1">
         <div className="media">

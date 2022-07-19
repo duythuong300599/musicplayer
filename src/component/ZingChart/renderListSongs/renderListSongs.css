@@ -37,7 +37,6 @@
 
 .chart-song-item .number {
   width: 60px;
-  min-width: 38px;
   -webkit-text-stroke: 1.5px var(--text-primary);
   opacity: 0.7;
   font-size: 32px;
@@ -60,7 +59,7 @@
 }
 
 .chart-song-item .number.is-top-3 {
-  -webkit-text-stroke: 1px #e35050;
+  -webkit-text-stroke: 1px #ff83fb;
   opacity: 1;
 }
 .box-list .chart-song-item .number {
@@ -173,4 +172,23 @@
   text-overflow: ellipsis;
   overflow: hidden;
   max-width: 100%;
+}
+
+@media screen and (max-width: 800px) {
+  .list-item .media-content {
+    display: none;
+  }
+
+  .list-item .media {
+    justify-content: space-between;
+  }
+
+  .chart-song-item .number {
+    width: 32px;
+    font-size: 24px;
+  }
+
+  .list-item .media-left {
+    width: 85%;
+  }
 }

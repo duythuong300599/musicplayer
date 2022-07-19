@@ -1,9 +1,9 @@
 .layout-container {
   display: flex;
   width: 100%;
-  min-width: 768px;
   height: 100vh;
   /* background-color: var(--layout-background); */
+  background-image: url(https://images.unsplash.com/photo-1612048405411-f71a1b9d3e8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80);
 }
 
 .main-page {
@@ -17,4 +17,10 @@
 
 .song-playing {
   height: calc(100% - 90px);
+}
+
+@media screen and (max-width: 800px) {
+  .song-playing {
+    height: calc(100% - 120px);
+  }
 }

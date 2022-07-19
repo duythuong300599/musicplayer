@@ -49,7 +49,7 @@
 }
 
 .chart-list-container {
-  height: 610px;
+  height: 612px;
   overflow: hidden;
   margin-bottom: 15px;
 }
@@ -70,6 +70,7 @@
 }
 
 .container .chart-wrapper .chart-header .chart-title .title {
+  display: flex;
   font-size: 40px;
   font-weight: 700;
   line-height: normal;
@@ -175,6 +176,23 @@
   margin-bottom: 15px;
 }
 
-.otp-hover {
+.otp-hover,
+.btn-chart-play {
   display: none;
+}
+
+@media screen and (max-width: 1200px) {
+  .page-wrapper,
+  .show-all {
+    padding: 0 10px;
+  }
+
+  .container .chart-wrapper .chart-header .chart-title .title {
+    display: block;
+    font-size: 18px;
+  }
+
+  .chart-wrapper {
+    padding: 30px 0 75px 0;
+  }
 }

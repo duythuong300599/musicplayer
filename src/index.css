@@ -8,9 +8,9 @@
   --song-item-action: hsla(0, 0%, 100%, 0.5);
   --navigation-text: #dadada;
   --search-text: #eee;
-  --layout-background: #170f23;
+  --layout-background: rgba(203, 110, 110, 0.3);
   --scroll-thumb-bg: hsla(0, 0%, 100%, 0.3);
-  --sidebar-bg: hsla(0, 0%, 100%, 0.05);
+  --sidebar-bg: hsla(0, 0%, 100%, 0.15);
   --alpha-bg: hsla(0, 0%, 100%, 0.1);
   --setting-icon-text: #d8d8d8;
   --dark-alpha-50: hsla(0, 0%, 0%, 0.5);

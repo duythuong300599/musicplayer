@@ -61,7 +61,7 @@ function NowPlaying() {
         console.log(error);
       }
     };
-    currentIndex ? fetchChartSong() : console.log("");
+    listSongs[currentIndex] ? fetchChartSong() : console.log("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listSongs[currentIndex]]);
 
@@ -198,7 +198,7 @@ function NowPlaying() {
                     />
                   </h3>
                 </div>
-                <div className="media-left">
+                <div className="media-left mobile-hide">
                   <div className="item">
                     <ButtonIcon icon={faEllipsis} />
                   </div>

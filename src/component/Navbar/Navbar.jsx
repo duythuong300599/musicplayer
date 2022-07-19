@@ -17,7 +17,7 @@ function Navbar() {
   return (
     <aside className="sidebar">
       <div className="sidebar-wrapper">
-        <nav className="navbar">
+        <nav className="navbar nav-mobile-hide">
           <div className="navbar-logo">
             <div className="navbar-item">
               <button className="btn btn-logo">
@@ -64,8 +64,11 @@ function Navbar() {
             </li>
           </ul>
         </nav>
-        <div className="nav-divide"></div>
-        <div className="navbar navbar-main mar-t-10" style={{ height: "100%" }}>
+        <div className="nav-divide nav-mobile-hide"></div>
+        <div
+          className="navbar nav-mobile-hide navbar-main mar-t-10"
+          style={{ height: "100%" }}
+        >
           <ul className="navbar-menu">
             <li className="nav-item">
               <NavLink className="nav-link cursor-disabled" to="/">

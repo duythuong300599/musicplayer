@@ -46,10 +46,15 @@ function ZingChart() {
           <div className="container chart-wrapper">
             <div className="chart-header">
               <div className="chart-title">
-                <h3 className="title">Top 100 bài hát nhạc trẻ hay nhất</h3>
-                <button className="btn btn-chart-play">
-                  <FontAwesomeIcon className="chart-icon-play" icon={faPlay} />
-                </button>
+                <h3 className="title">
+                  Top 100 bài hát nhạc trẻ hay nhất{" "}
+                  <button className="btn btn-chart-play">
+                    <FontAwesomeIcon
+                      className="chart-icon-play"
+                      icon={faPlay}
+                    />
+                  </button>
+                </h3>
               </div>
             </div>
             <div
