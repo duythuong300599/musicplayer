@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import "./ButtonPlay.css";
 
 function ButtonPlay(props) {
-  const prevSong = useSelector((state) => state.selectSong.song);
+  const prevSong = useSelector((state) => state.npLocalStore.song);
   const statePlay = useSelector((state) => state.selectSong.statePlay);
   return (
     <div className="btn-container">

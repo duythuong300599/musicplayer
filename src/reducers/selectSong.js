@@ -1,32 +1,18 @@
 const initialState = {
   audio: null,
   index: null,
-  song: {},
   listSongs: [],
   queueListSongs: [],
   zingChart: [],
   statePlay: false,
-  src: "",
 };
 
 const selectSongReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_SRC": {
-      return {
-        ...state,
-        src: action.payload,
-      };
-    }
     case "ADD_AUDIO": {
       return {
         ...state,
         audio: action.payload,
-      };
-    }
-    case "SELECTSONG": {
-      return {
-        ...state,
-        song: action.payload,
       };
     }
     case "ADD_LIST_SONGS": {

@@ -24,6 +24,7 @@ import "./Header.css";
 function Header() {
   const [listSearch, setListSearch] = useState(false);
   const [showSetting, setShowSetting] = useState(false);
+  const [searchSong, setSearchSong] = useState("");
 
   //handle show list search
   const handleShowListSearch = () => {
@@ -37,7 +38,21 @@ function Header() {
   const handleShowSetting = () => {
     setShowSetting((showSetting) => !showSetting);
   };
+  //submit
+  const onSubmit = (value) => {
+    console.log("Value: ", value);
+  };
+  //handleSearch
+  const handleSearchSong = (e) => {
+    const value = e.target.value;
+    setSearchSong(value);
 
+    if (!onSubmit) return;
+    const searchValue = {
+      searchSong: value,
+    };
+    onSubmit(searchValue);
+  };
   return (
     <header className="header">
       <div className="item">
@@ -60,6 +75,7 @@ function Header() {
                 <input
                   type="text"
                   placeholder="Nhập tên bài hát, nghệ sĩ hoặc MV…"
+                  onChange={handleSearchSong}
                 />
               </div>
             </div>

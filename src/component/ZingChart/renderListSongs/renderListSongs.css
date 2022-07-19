@@ -139,6 +139,13 @@
   max-width: 100%;
 }
 
+.media-content .album-info {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+}
+
 .media .media-right .duration {
   font-size: 12px;
   width: 46px;

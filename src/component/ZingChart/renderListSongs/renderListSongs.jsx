@@ -3,10 +3,10 @@ import { faEllipsis, faMicrophone } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { addSelectSong, addSelectSrc } from "../../../actions/np_localStore";
 import {
   addListSongs,
   addSelectIndex,
-  addSelectSong,
   setStatePlay,
 } from "../../../actions/selectSong";
 import ArtistName from "../../../common/ArtistName/ArtistName";
@@ -17,7 +17,7 @@ import formatTimes from "../../../common/fomatTimes";
 import "./renderListSongs.css";
 
 function RenderListSongs(props) {
-  const prevSong = useSelector((state) => state.selectSong.song);
+  const prevSong = useSelector((state) => state.npLocalStore.song);
   const currentStatePlay = useSelector((state) => state.selectSong.statePlay);
   const audioElement = useSelector((state) => state.selectSong.audio);
   const queueListSongs = useSelector(
@@ -32,6 +32,7 @@ function RenderListSongs(props) {
     dispatch(addSelectSong(song));
     dispatch(addSelectIndex(index));
     dispatch(addListSongs(queueListSongs));
+    dispatch(addSelectSrc(""));
     // console.log("index: ", index);
     if (currentStatePlay && audioElement) {
       audioElement.pause();

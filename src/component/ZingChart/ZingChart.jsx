@@ -1,7 +1,6 @@
 import { faPlay } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { memo, useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
 import songAPI from "../../Api/songApi";
 import "./ZingChart.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,17 +17,15 @@ function ZingChart() {
   const chartSongs = useSelector((state) => state.selectSong.zingChart);
   const isLoading = useSelector((state) => state.isLoading.loading);
   const ListSongs = chartSongs?.RTChart ? chartSongs.RTChart.items : [];
-  const chartWeek = chartSongs?.weekChart ? chartSongs.weekChart : null;
   //API
   useEffect(() => {
     const fetchChartSong = async () => {
       try {
         const responseChartSong = await songAPI.getChartHome();
-        const dataChartSongs = responseChartSong.data;
+        const dataChartSongs = responseChartSong;
         dispatch(addZingChart(dataChartSongs));
         dispatch(addQueueListSongs(dataChartSongs.RTChart.items));
         dispatch(setIsLoading(true));
-        console.log("func called");
       } catch (error) {
         console.log(error);
       }
@@ -49,7 +46,7 @@ function ZingChart() {
           <div className="container chart-wrapper">
             <div className="chart-header">
               <div className="chart-title">
-                <h3 className="title">#zingchart</h3>
+                <h3 className="title">Top 100 bài hát nhạc trẻ hay nhất</h3>
                 <button className="btn btn-chart-play">
                   <FontAwesomeIcon className="chart-icon-play" icon={faPlay} />
                 </button>
@@ -75,136 +72,7 @@ function ZingChart() {
               className={`show-list ${showList ? "hide" : ""}`}
               onClick={handleShowTop100}
             >
-              <button className="btn btn-show-list">Xem Top 100</button>
-            </div>
-          </div>
-          <div className="container week-chart">
-            <div className="week-chart-header">
-              <NavLink
-                className="week-chart-title"
-                to={chartWeek ? chartWeek.vn.link : ""}
-              >
-                Bảng Xếp Hạng Tuần
-              </NavLink>
-            </div>
-            <div className="week-chart-column">
-              <div className="column-item">
-                <div className="week-chart-box">
-                  <div className="box-header">
-                    <NavLink to="" className="box-header-title">
-                      Việt Nam
-                    </NavLink>
-                    <button className="btn btn-chart-play">
-                      <FontAwesomeIcon
-                        className="chart-icon-play"
-                        icon={faPlay}
-                      />
-                    </button>
-                  </div>
-                  <div className="box-list">
-                    {chartWeek ? (
-                      chartWeek.vn.items.map((item, index) => (
-                        <RenderListSongs
-                          key={index}
-                          index={index}
-                          item={item}
-                          fullList={false}
-                        ></RenderListSongs>
-                      ))
-                    ) : (
-                      <RenderListSkeleton items={5} />
-                    )}
-                  </div>
-                  <div className="show-list">
-                    <NavLink
-                      className="week-chart-link"
-                      to={chartWeek ? chartWeek.vn.link : ""}
-                    >
-                      <button className="btn btn-show-list">Xem Tất Cả</button>
-                    </NavLink>
-                  </div>
-                </div>
-              </div>
-              <div className="column-item">
-                <div className="week-chart-box">
-                  <div className="box-header">
-                    <NavLink
-                      to={chartWeek ? chartWeek.us.link : ""}
-                      className="box-header-title"
-                    >
-                      US-UK
-                    </NavLink>
-                    <button className="btn btn-chart-play">
-                      <FontAwesomeIcon
-                        className="chart-icon-play"
-                        icon={faPlay}
-                      />
-                    </button>
-                  </div>
-                  <div className="box-list mar-b-15">
-                    {chartWeek ? (
-                      chartWeek.us.items.map((item, index) => (
-                        <RenderListSongs
-                          key={index}
-                          index={index}
-                          item={item}
-                          fullList={false}
-                        ></RenderListSongs>
-                      ))
-                    ) : (
-                      <RenderListSkeleton items={5} />
-                    )}
-                  </div>
-                  <div className="show-list">
-                    <NavLink
-                      className="week-chart-link"
-                      to={chartWeek ? chartWeek.us.link : ""}
-                    >
-                      <button className="btn btn-show-list">Xem Tất Cả</button>
-                    </NavLink>
-                  </div>
-                </div>
-              </div>
-              <div className="column-item">
-                <div className="week-chart-box">
-                  <div className="box-header">
-                    <NavLink
-                      to={chartWeek ? chartWeek.korea.link : ""}
-                      className="box-header-title"
-                    >
-                      K-POP
-                    </NavLink>
-                    <button className="btn btn-chart-play">
-                      <FontAwesomeIcon
-                        className="chart-icon-play"
-                        icon={faPlay}
-                      />
-                    </button>
-                  </div>
-                  <div className="box-list">
-                    {chartWeek ? (
-                      chartWeek.korea.items.map((item, index) => (
-                        <RenderListSongs
-                          key={index}
-                          index={index}
-                          item={item}
-                          fullList={false}
-                        ></RenderListSongs>
-                      ))
-                    ) : (
-                      <RenderListSkeleton items={5} />
-                    )}
-                  </div>
-                  <div className="show-list">
-                    <NavLink
-                      className="week-chart-link"
-                      to={chartWeek ? chartWeek.korea.link : ""}
-                    >
-                      <button className="btn btn-show-list">Xem Tất Cả</button>
-                    </NavLink>
-                  </div>
-                </div>
-              </div>
+              <button className="btn btn-show-list">More</button>
             </div>
           </div>
         </div>

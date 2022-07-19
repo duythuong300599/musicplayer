@@ -23,6 +23,7 @@ function Navbar() {
               <button className="btn btn-logo">
                 <NavLink to="/">
                   <div className="logo"></div>
+                  <span className="logo-title">Music Player</span>
                 </NavLink>
               </button>
             </div>
@@ -37,13 +38,13 @@ function Navbar() {
               </NavLink>
             </li> */}
             <li className="nav-item">
-              <NavLink className="nav-link" to="/">
+              <NavLink className="nav-link cursor-disabled" to="/">
                 <FontAwesomeIcon className="nav-icon" icon={faCompactDisc} />
                 <span>Khám phá</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/zing-chart">
+              <NavLink className="nav-link" to="/">
                 <FontAwesomeIcon className="nav-icon" icon={faChartLine} />
                 <span>#zingchart</span>
               </NavLink>

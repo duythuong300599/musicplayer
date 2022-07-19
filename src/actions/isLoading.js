@@ -4,10 +4,3 @@ export const setIsLoading = (payload) => {
     payload: payload,
   };
 };
-
-export const setIsPlaying = (payload) => {
-  return {
-    type: "SET_IS_PLAYING",
-    payload: payload,
-  };
-};

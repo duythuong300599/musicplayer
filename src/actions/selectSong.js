@@ -5,23 +5,9 @@ export const addAudioElement = (payload) => {
   };
 };
 
-export const addSelectSrc = (payload) => {
-  return {
-    type: "ADD_SRC",
-    payload: payload,
-  };
-};
-
 export const addSelectIndex = (payload) => {
   return {
     type: "SELECT_INDEX",
-    payload: payload,
-  };
-};
-
-export const addSelectSong = (payload) => {
-  return {
-    type: "SELECTSONG",
     payload: payload,
   };
 };

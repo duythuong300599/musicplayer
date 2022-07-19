@@ -1,14 +1,13 @@
 import React from "react";
 import Navbar from "./component/Navbar/Navbar";
 import "./App.css";
-import Header from "./component/Header/Header";
 import Router from "./router";
 import NowPlaying from "./component/NowPlaying/NowPlaying";
 import { SkeletonTheme } from "react-loading-skeleton";
 import { useSelector } from "react-redux";
 
 function App() {
-  const isPlaying = useSelector((state) => state.isLoading.playing);
+  const isPlaying = useSelector((state) => state.npLocalStore.isPlaying);
 
   const backgroundColor = {
     primary: "#170f23",
@@ -24,7 +23,6 @@ function App() {
         style={{ backgroundColor: `${backgroundColor.primary}` }}
       >
         <Navbar />
-        <Header />
         <div className={`${isPlaying ? "song-playing" : ""} main-page`}>
           <Router />
         </div>

@@ -96,6 +96,10 @@
   position: relative;
   flex-grow: 1;
 }
+.div,
+.item.list-playing {
+  display: none;
+}
 
 .list-playing .btn-icon {
   background-color: var(--alpha-bg);
@@ -191,4 +195,16 @@
 .control-wrapper .btn-control.btn-toggle .icon {
   font-size: 14px;
   width: 14px;
+}
+
+.loop-active .btn-icon .icon,
+.random-active .btn-icon .icon {
+  color: var(--link-text-hover);
+}
+
+@media only screen and (max-width: 1200px) {
+  .item.list-playing,
+  .div {
+    display: flex;
+  }
 }

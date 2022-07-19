@@ -3,14 +3,12 @@ import {
   faEllipsis,
   faForwardStep,
   faListUl,
-  faMicrophone,
   faPause,
   faPlay,
   faRepeat,
   faShuffle,
   faVolumeMute,
   faVolumeUp,
-  faWindowRestore,
 } from "@fortawesome/free-solid-svg-icons";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -18,8 +16,6 @@ import { NavLink } from "react-router-dom";
 import {
   addAudioElement,
   addSelectIndex,
-  addSelectSong,
-  addSelectSrc,
   setStatePlay,
 } from "../../actions/selectSong";
 import songApi from "../../Api/songApi";
@@ -27,23 +23,28 @@ import ArtistName from "../../common/ArtistName/ArtistName";
 import ButtonIcon from "../../common/ButtonIcon/ButtonIcon";
 import "./NowPlaying.css";
 import formatTimes from "../../common/fomatTimes";
-import { setIsPlaying } from "../../actions/isLoading";
-import NPLyrics from "./np_lyrics/NPLyrics";
+import {
+  addSelectSong,
+  addSelectSrc,
+  setIsPlaying,
+  setVolume,
+} from "../../actions/np_localStore";
 
 function NowPlaying() {
   const audioRef = useRef();
   const audio = audioRef.current;
-  const [volume, setVolume] = useState(100);
   const [currentTimeSong, setCurrentTimeSong] = useState(0);
+  const [loop, setLoop] = useState(false);
+  const [random, setRandom] = useState(false);
 
   const listSongs = useSelector((state) => state.selectSong.listSongs);
   const currentIndex = useSelector((state) => state.selectSong.index);
   const currentStatePlay = useSelector((state) => state.selectSong.statePlay);
-  const srcSong = useSelector((state) => state.selectSong.src);
-  const isPlaying = useSelector((state) => state.isLoading.playing);
+  const srcSong = useSelector((state) => state.npLocalStore.src);
+  const isPlaying = useSelector((state) => state.npLocalStore.isPlaying);
+  const volume = useSelector((state) => state.npLocalStore.volume);
   const actionStatePlayTrue = setStatePlay(true);
   const actionStatePlayFalse = setStatePlay(false);
-
   const dispatch = useDispatch();
 
   //API cu
@@ -53,41 +54,48 @@ function NowPlaying() {
         const responseSong = await songApi.getSong(
           listSongs[currentIndex].encodeId
         );
-        dispatch(addSelectSrc(responseSong.data[128]));
+        dispatch(addSelectSrc(responseSong[128]));
         dispatch(addAudioElement(audio));
         dispatch(setIsPlaying(true));
       } catch (error) {
         console.log(error);
       }
     };
-    fetchChartSong();
+    currentIndex ? fetchChartSong() : console.log("");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [listSongs[currentIndex]]);
 
   //next song
   const nextSong = () => {
-    let nextIndex = currentIndex + 1;
+    let nextIndex;
+    if (random) {
+      const randomIdx = Math.floor(Math.random() * listSongs.length);
+      nextIndex = randomIdx;
+    } else {
+      nextIndex = currentIndex + 1;
+    }
     if (nextIndex >= listSongs.length) {
       nextIndex = 0;
     }
-    const action = addSelectIndex(nextIndex);
-    const actions = addSelectSong(listSongs[nextIndex]);
-    dispatch(action);
-    dispatch(actions);
+    dispatch(addSelectIndex(nextIndex));
+    dispatch(addSelectSong(listSongs[nextIndex]));
     setCurrentTimeSong(0);
     audio.src = "";
   };
   //prev song
   const prevSong = () => {
-    let prevIndex = currentIndex - 1;
+    let prevIndex;
+    if (random) {
+      const randomIdx = Math.floor(Math.random() * listSongs.length);
+      prevIndex = randomIdx;
+    } else {
+      prevIndex = currentIndex - 1;
+    }
     if (prevIndex < 0) {
       prevIndex = listSongs.length - 1;
     }
-    const actionIndex = addSelectIndex(prevIndex);
-    const actionSong = addSelectSong(listSongs[prevIndex]);
-
-    dispatch(actionIndex);
-    dispatch(actionSong);
+    dispatch(addSelectIndex(prevIndex));
+    dispatch(addSelectSong(listSongs[prevIndex]));
 
     setCurrentTimeSong(0);
     audio.src = "";
@@ -97,7 +105,7 @@ function NowPlaying() {
   const handleVolumeChanged = (e) => {
     let volumeCurrent = e.target.value / 100;
     audio.volume = volumeCurrent;
-    setVolume(volumeCurrent * 100);
+    dispatch(setVolume(volumeCurrent * 100));
   };
   //time song Play
   const timePlay = () => {
@@ -123,12 +131,21 @@ function NowPlaying() {
       dispatch(actionStatePlayTrue);
     }
   };
-  // handle seek the song
+  // handle seek song
   const handleSeek = (e) => {
     let timeCurrent =
       (e.target.value / 100) *
       (listSongs[currentIndex] ? listSongs[currentIndex].duration : 100);
     audio.currentTime = timeCurrent;
+  };
+  //handle loop song
+  const handleLoopSong = () => {
+    setLoop((loop) => !loop);
+  };
+
+  //handle random song
+  const handleSetRandomSong = () => {
+    setRandom((random) => !random);
   };
 
   return (
@@ -191,7 +208,10 @@ function NowPlaying() {
           </div>
           <div className="item-center player-control-center">
             <div className="control-wrapper">
-              <div className="btn-control">
+              <div
+                className={`btn-control ${random ? "random-active" : ""}`}
+                onClick={handleSetRandomSong}
+              >
                 <ButtonIcon icon={faShuffle}></ButtonIcon>
               </div>
               <div className="btn-control" onClick={prevSong}>
@@ -205,7 +225,10 @@ function NowPlaying() {
               <div className="btn-control" onClick={nextSong}>
                 <ButtonIcon icon={faForwardStep}></ButtonIcon>
               </div>
-              <div className="btn-control">
+              <div
+                className={`btn-control ${loop ? "loop-active" : ""}`}
+                onClick={handleLoopSong}
+              >
                 <ButtonIcon icon={faRepeat}></ButtonIcon>
               </div>
             </div>
@@ -234,12 +257,6 @@ function NowPlaying() {
             </div>
           </div>
           <div className="item-right player-control-right">
-            <div className="item">
-              <ButtonIcon icon={faMicrophone} />
-            </div>
-            <div className="item">
-              <ButtonIcon icon={faWindowRestore} />
-            </div>
             <div className="item">
               <ButtonIcon icon={volume === 0 ? faVolumeMute : faVolumeUp} />
             </div>
@@ -271,6 +288,7 @@ function NowPlaying() {
       <audio
         onPlay={timePlay}
         onEnded={nextSong}
+        loop={loop}
         ref={audioRef}
         autoPlay={Boolean(srcSong)}
         src={listSongs[currentIndex] ? srcSong : ""}
